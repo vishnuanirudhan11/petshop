@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+    .hyy{
+        background-color:rgb(180,180,300);
+        text-align:center;
+        padding:15px 15px 15px 15px;
+
+    }
+    #detail{
+        margin:0 auto;
+        background-color:rgb(150,150,300);
+        border:2px solid;
+        border-radius:5px;
+        padding:10px;
+        position: relative;
+        box-shadow:5px 5px 5px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="row hyy" >
+
+    <div id="detail" style="width:250px;" >
+        <h3>{{pr.name}}</h3>
+    <img style="width:225px;" src="{{pr.img.url}}" alt="">
+    <p>{{pr.desc}}</p>
+    {% if pr.avilability %}
+        <h4>Stock left={{pr.stock}}</h4>
+        <h4 style="color:green">In stock </h4>
+        <h4>Price:{{pr.price}}</h4>
+        <a href="#" class="btn btn-success" >Add to cart</a>
+    {% else %}
+        <h4 style="color:red">Out of stock</h4>
+    {% endif %}
+    </div>
+
+</div>
+{% endblock %}

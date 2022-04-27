@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+<body>
+  <div class="Cart-Container">
+    <div class="Header">
+      <h3 class="Heading">Shopping Cart</h3>
+      <a class="Action" href="{% url 'deleteall' %}">Remove all</a>
+    </div>
+      
+        {% for i in cl %}
+    <div class="Cart-Items" style="text-align:right;">
+       <div class="image-box">
+         <img src="{{i.prodt.img.url}}" style="height:120px;width:120px;"/>
+       </div>
+       <div class="about" >
+         <h1 class="title">{{i.prodt.name}}</h1>
+         <h3 class="subtitle"></h3>
+       </div>
+       <div class="counter"  >
+          <a href="{% url 'add_cart' i.prodt.id %}" class="btn" style="text-decoration:none;">+</a>
+          <div class="count">{{i.quan}}</div>
+          <a href="{% url 'min' i.prodt.id %}"class="btn" style="text-decoration:none;">-</a>
+      </div>
+
+      <div class="prices">
+          <div class="amount">Rs {{i.prodt.price}}</div>
+          <div class="save"><u>Save for later</u></div>
+          <div class="remove"><a href="{% url 'delete' i.prodt.id %}">Remove</a></div>
+     </div>
+   </div>
+      {% endfor %}
+   <hr>
+    <div class="checkout">
+    <div class="total">
+    <div>
+    <div class="Subtotal">Sub-Total</div>
+    <div class=""><p style="color:red;"><b>Nos pets you have selected={{cn}}</b></p></div>
+    </div>
+    <div class="total-amount">{{t}}</div>
+    </div>
+    <button class="button">Checkout</button>
+    </div>
+  </div>
+</body>
+</html>
